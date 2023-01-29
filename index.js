@@ -1,6 +1,5 @@
 const express  = require  ('express');
 const { createClient } = require  ('@supabase/supabase-js')
-const serverless =  require('serverless-http');
 
 const app = express();
 const PORT = 8080;
