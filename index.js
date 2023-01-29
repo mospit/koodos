@@ -5,13 +5,12 @@ const serverless =  require('serverless-http');
 
 dotenv.config();
 const app = express();
-const router = express.Router();
 const PORT = 8080;
 
 app.use(express.json());
-app.use('/home', home);
+
 const supabase = createClient(process.env.URL, process.env.API_KEY);
-router.get('/',async (req, res) => {
+app.get('/',async (req, res) => {
     const { data, error } = await supabase
     .from('data')
     .select();
@@ -19,7 +18,7 @@ router.get('/',async (req, res) => {
     res.send(data)
   })
   
-  router.get('/:id', async (req, res)=> {
+  app.get('/:id', async (req, res)=> {
     const { data, error } = await supabase
 .from('data')
 .select();
@@ -28,7 +27,7 @@ router.get('/',async (req, res) => {
     res.send(data[id]);
   });
 
-  router.post('/', async (req, res) => {
+  app.post('/', async (req, res) => {
     const sequence = {id: "676"}
     const { data, error } = await supabase
     .from('data')
