@@ -9,8 +9,9 @@ const router = express.Router();
 const PORT = 8080;
 
 app.use(express.json());
+app.use('/home', home);
 const supabase = createClient(process.env.URL, process.env.API_KEY);
-app.get('/',async (req, res) => {
+router.get('/',async (req, res) => {
     const { data, error } = await supabase
     .from('data')
     .select();
@@ -18,7 +19,7 @@ app.get('/',async (req, res) => {
     res.send(data)
   })
   
-  app.get('/:id', async (req, res)=> {
+  router.get('/:id', async (req, res)=> {
     const { data, error } = await supabase
 .from('data')
 .select();
@@ -27,7 +28,7 @@ app.get('/',async (req, res) => {
     res.send(data[id]);
   });
 
-  app.post('/', async (req, res) => {
+  router.post('/', async (req, res) => {
     const sequence = {id: "676"}
     const { data, error } = await supabase
     .from('data')
