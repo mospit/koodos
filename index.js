@@ -34,6 +34,4 @@ app.get('/',async (req, res) => {
     res.end();
   })
 
-app.listen(PORT, () => {
-  console.log(`Listenig on http://localhost:${PORT}`)
-})
+app.listen(PORT || 9000)
