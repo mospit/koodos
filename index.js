@@ -8,7 +8,6 @@ const app = express();
 const PORT = 8080;
 
 app.use(express.json());
-
 const supabase = createClient(process.env.URL, process.env.API_KEY);
 app.get('/',async (req, res) => {
     const { data, error } = await supabase
